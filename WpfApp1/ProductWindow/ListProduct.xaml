@@ -1,0 +1,103 @@
+﻿<Window x:Class="WpfApp1.ProductWindow.ListProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.ProductWindow"
+        mc:Ignorable="d"
+        Title="Список продукта" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Icon="/products/Лопушок.ico">
+    <Grid>
+        <ListView
+            x:Name="ListProd"
+            MaxHeight="400"
+            Margin="40,100,40,50"
+            BorderBrush="Black"
+            BorderThickness="2" SelectionChanged="ListProd_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="100"
+                            Height="50"
+                            Source="{Binding Image}" />
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding ProductTypeID.Title}" />
+                            <TextBlock Margin="3,0,0,0" Text="{Binding Title}" />
+                            <TextBlock Text="{Binding ProductType.Title}" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Минимальная цена для агента(руб.): " />
+                            <TextBlock Text="{Binding MinCostForAgent}" />
+
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <TextBox
+            x:Name="Poisk"
+            Width="199"
+            Margin="38,35,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextChanged="Poisk_TextChanged"
+            TextWrapping="Wrap" />
+        <Label
+            x:Name="lbp"
+            Margin="115,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Поиск" />
+        <ComboBox
+            x:Name="SortCB"
+            Width="120"
+            Margin="321,31,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="SortCB_SelectionChanged" />
+        <ComboBox
+            x:Name="FilterCB"
+            Width="120"
+            Margin="558,31,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="FilterCB_SelectionChanged" />
+        <Label
+            x:Name="SortLabel"
+            Margin="343,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Сортировка" />
+        <Label
+            x:Name="FilterLabel"
+            Margin="580,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Фильтрация" />
+        <Button
+            Width="100"
+            Margin="331,64,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Добавление" Click="Button_Click" />
+        <Button
+            Width="100"
+            Margin="568,64,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Редактирование" />
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Bottom">
+            <Button x:Name="BLeft" Click="BLeft_Click" Content="Left" Width="50" Margin="5" Background="#FFFFE9F9"/>
+            <ScrollViewer MaxWidth="300" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#FFFFE9F9">
+                <WrapPanel x:Name="WPButtons"/>
+            </ScrollViewer>
+            <Button x:Name="BRight" Click="BRight_Click" Content="Right" Width="50" Margin="5" Background="#FFFFE9F9"/>
+        </WrapPanel>
+    </Grid>
+</Window>
